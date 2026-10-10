@@ -56,7 +56,11 @@
       caption.className = 'instacaption';
       caption.style.whiteSpace = 'pre-line';
       caption.style.lineHeight = '1.7';
-      caption.textContent = post.caption.trim().replace(/[ \t]+\n/g, '\n').slice(0, 220);
+      caption.style.fontWeight = '700';
+      caption.style.display = 'block';
+      caption.style.overflow = 'visible';
+      caption.style.webkitLineClamp = 'unset';
+      caption.textContent = post.caption.trim().replace(/[ \t]+\n/g, '\n');
       card.append(caption);
     }
 
