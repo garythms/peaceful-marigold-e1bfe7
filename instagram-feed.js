@@ -8,12 +8,14 @@
     const note = document.createElement('p');
     note.className = 'feednote';
     note.textContent = message + ' ';
+
     const link = document.createElement('a');
     link.href = instagramUrl;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     link.textContent = 'Visit @vttravel2026 on Instagram.';
     note.append(link);
+
     feed.replaceChildren(note);
     feed.setAttribute('aria-busy', 'false');
   }
@@ -31,6 +33,7 @@
     const permalink = safeHttpsUrl(post.permalink);
     const imageUrl = safeHttpsUrl(post.mediaUrl);
     if (!permalink || !imageUrl) return null;
+
     const instagramHost = new URL(permalink).hostname;
     if (instagramHost !== 'www.instagram.com' && instagramHost !== 'instagram.com') return null;
 
@@ -39,7 +42,7 @@
     card.href = permalink;
     card.target = '_blank';
     card.rel = 'noopener noreferrer';
-    card.setAttribute('aria-label', 'View this post on Instagram');
+    card.setAttribute('aria-label', 'Click for more information on Instagram');
 
     const image = document.createElement('img');
     image.src = imageUrl;
@@ -48,17 +51,19 @@
     image.decoding = 'async';
     card.append(image);
 
-    if (post.caption) {
+    if (typeof post.caption === 'string' && post.caption.trim()) {
       const caption = document.createElement('span');
       caption.className = 'instacaption';
-      caption.textContent = post.caption.trim().replace(/\s+/g, ' ').slice(0, 140);
+      caption.style.whiteSpace = 'pre-line';
+      caption.style.lineHeight = '1.7';
+      caption.textContent = post.caption.trim().replace(/[ \t]+\n/g, '\n').slice(0, 220);
       card.append(caption);
     }
 
     const label = document.createElement('span');
     label.className = 'instaopen';
     label.setAttribute('aria-hidden', 'true');
-    label.textContent = 'View on Instagram ↗';
+    label.textContent = 'Click for more information ↗';
     card.append(label);
     return card;
   }
