@@ -52,12 +52,19 @@ document.querySelectorAll('.menu').forEach((button, index) => {
         <img class="contact-dock__icon" src="https://cdn.simpleicons.org/whatsapp/25D366" alt="" aria-hidden="true">
         <span><small>Message us</small><strong>WhatsApp</strong></span>
       </a>
+      <a class="contact-dock__link contact-dock__link--instagram" href="https://www.instagram.com/vttravel2026/" target="_blank" rel="noopener noreferrer" aria-label="VT Travel on Instagram">
+        <img class="contact-dock__icon" src="https://cdn.simpleicons.org/instagram/FFFFFF" alt="" aria-hidden="true">
+        <span><small>Follow us</small><strong>Instagram</strong></span>
+      </a>
       <a class="contact-dock__link contact-dock__link--facebook" href="https://www.facebook.com/vttravelservices/" target="_blank" rel="noopener noreferrer" aria-label="VT Travel on Facebook">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3.5C10.5 4 9 5.8 9 8.5V11H6v4h3v6h4v-6h3.2l.8-4h-4V8.8c0-.6.3-.8 1-.8Z"/></svg>
         <span><small>Follow us</small><strong>Facebook</strong></span>
       </a>`;
     document.body.append(dock);
     document.body.classList.add('has-contact-dock');
+    const style = document.createElement('style');
+    style.textContent = '.contact-dock{grid-template-columns:repeat(5,minmax(0,1fr))!important}.contact-dock__link strong{overflow:visible!important;text-overflow:clip!important;white-space:nowrap!important;font-size:12px!important}@media(max-width:700px){.contact-dock__link strong{font-size:9px!important;white-space:normal!important;overflow-wrap:anywhere!important}.contact-dock__link{justify-content:center!important}}';
+    document.head.append(style);
   };
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', addSiteControls, { once: true });
