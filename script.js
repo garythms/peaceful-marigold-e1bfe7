@@ -63,7 +63,7 @@ document.querySelectorAll('.menu').forEach((button, index) => {
     document.body.append(dock);
     document.body.classList.add('has-contact-dock');
     const style = document.createElement('style');
-    style.textContent = '.contact-dock{grid-template-columns:repeat(5,minmax(0,1fr))!important}.contact-dock__link strong{overflow:visible!important;text-overflow:clip!important;white-space:nowrap!important;font-size:12px!important}@media(max-width:700px){.contact-dock__link strong{font-size:9px!important;white-space:normal!important;overflow-wrap:anywhere!important}.contact-dock__link{justify-content:center!important}}';
+    style.textContent = '.contact-dock{grid-template-columns:minmax(0,1fr) minmax(0,1.8fr) repeat(3,minmax(0,1fr))!important}.contact-dock__link{min-width:0}.contact-dock__link:nth-child(2) span{min-width:0}.contact-dock__link strong{overflow:visible!important;text-overflow:clip!important;white-space:nowrap!important;font-size:12px!important}@media(max-width:700px){.contact-dock{grid-template-columns:repeat(5,minmax(0,1fr))!important}.contact-dock__link{justify-content:center!important}.contact-dock__link strong{font-size:9px!important;white-space:normal!important;overflow-wrap:anywhere!important}}';
     document.head.append(style);
   };
   if (document.readyState === 'loading') {
