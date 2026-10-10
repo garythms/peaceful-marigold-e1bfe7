@@ -57,9 +57,10 @@
       caption.style.whiteSpace = 'pre-line';
       caption.style.lineHeight = '1.7';
       caption.style.fontWeight = '700';
-      caption.style.display = 'block';
-      caption.style.overflow = 'visible';
-      caption.style.webkitLineClamp = 'unset';
+      caption.style.display = '-webkit-box';
+      caption.style.webkitBoxOrient = 'vertical';
+      caption.style.webkitLineClamp = '9';
+      caption.style.overflow = 'hidden';
       caption.textContent = post.caption.trim().replace(/[ \t]+\n/g, '\n');
       card.append(caption);
     }
