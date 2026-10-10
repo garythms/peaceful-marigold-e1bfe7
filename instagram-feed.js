@@ -90,3 +90,10 @@
     })
     .catch(() => showMessage('Instagram posts are not available right now.'));
 })();
+
+
+// Load shared navigation, original logo and contact bar on the homepage.
+const siteControls = document.createElement('script');
+siteControls.src = 'script.js';
+siteControls.defer = true;
+document.head.append(siteControls);
