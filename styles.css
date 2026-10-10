@@ -34,3 +34,14 @@
 
 /* WhatsApp brand mark on contact links */
 a[href*="wa.me/"]::before{content:"";display:inline-block;width:1.15em;height:1.15em;margin-right:.55em;vertical-align:middle;background:url("https://cdn.simpleicons.org/whatsapp/25D366") center/contain no-repeat;flex:none}
+
+
+/* Preview: Instagram captions below each photo */
+.instafeed .instagrid{align-items:stretch;gap:18px}
+.instafeed .instapost{aspect-ratio:auto;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;padding:0;border:1px solid #e5e8ed;border-radius:16px;background:#fff;box-shadow:0 12px 30px rgba(7,29,59,.10);color:var(--ink);overflow:hidden}
+.instafeed .instapost:before{content:none}
+.instafeed .instapost img{position:static;display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;flex:none}
+.instafeed .instapost .instacaption{position:static;display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:4;margin:0;padding:16px 16px 0;color:#33445d;font:500 14px/1.55 'DM Sans',sans-serif}
+.instafeed .instapost .instaopen{position:static;margin-top:auto;padding:14px 16px 16px;color:var(--pink);font:800 10px/1.3 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.instafeed .instapost:focus-visible{outline:3px solid var(--pink);outline-offset:4px}
+@media(max-width:800px){.instafeed .instagrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.instafeed .instapost .instacaption{padding:13px 13px 0;font-size:13px}.instafeed .instapost .instaopen{padding:12px 13px 14px}}
