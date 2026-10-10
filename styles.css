@@ -31,3 +31,6 @@
 .instafeed .feednote{grid-column:1/-1;margin:18px 0;text-align:center;color:#78869a;font-size:14px}
 .instafeed .feednote a{color:var(--navy);font-weight:700}
 @media(max-width:800px){.instafeed .instagrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+
+/* WhatsApp brand mark on contact links */
+a[href*="wa.me/"]::before{content:"";display:inline-block;width:1.15em;height:1.15em;margin-right:.55em;vertical-align:middle;background:url("https://cdn.simpleicons.org/whatsapp/25D366") center/contain no-repeat;flex:none}
