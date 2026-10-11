@@ -1,3 +1,4 @@
+
 document.querySelectorAll('.menu').forEach((button, index) => {
   const nav = button.parentElement.querySelector('nav');
   if (!nav) return;
@@ -33,7 +34,7 @@ document.querySelectorAll('.menu').forEach((button, index) => {
       logo.src = 'assets/vttravel-logo.jpg';
       logo.alt = 'VT Travel logo';
       brand.replaceChildren(logo);
-      brand.classList.add('logo-image-only');
+      if (brand.matches('header .brand')) {  const wordmark = document.createElement('span');  wordmark.innerHTML = '<b>VT</b> Travel<small>YOUR JOURNEY • OUR PASSION</small>';  brand.replaceChildren(logo, wordmark);  brand.classList.remove('logo-image-only');} else {  brand.classList.add('logo-image-only');}
     });
     if (document.querySelector('.contact-dock')) return;
     const dock = document.createElement('nav');
