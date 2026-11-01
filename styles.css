@@ -217,3 +217,16 @@ body.has-contact-dock{padding-bottom:82px}
 .brand span{display:block!important;font-size:38px;letter-spacing:.01em}
 .brand small{font-size:9px;letter-spacing:.18em}
 @media(max-width:800px){.nav{height:82px}.brand img{width:56px;height:56px}.brand span{font-size:24px!important}.brand small{font-size:6px;letter-spacing:.12em}}
+
+
+/* Keep every Instagram post image uncropped and preserve its original proportions. */
+.instafeed .instagrid{align-items:stretch}
+.instafeed .instapost{aspect-ratio:auto;display:flex;flex-direction:column;align-items:stretch;padding:0;border:1px solid #e5e8ed;border-radius:16px;background:#fff;box-shadow:0 12px 30px rgba(7,29,59,.10);overflow:hidden;color:var(--ink);transition:transform .2s,box-shadow .2s}
+.instafeed .instapost:before{content:none}
+.instafeed .instapost-image{display:block;position:relative;overflow:hidden;background:#e5eaf0}
+.instafeed .instapost img{display:block;position:static;width:100%;height:auto;object-fit:contain}
+.instafeed .instapost-details{display:flex;flex:1;flex-direction:column;align-items:flex-start;padding:16px 17px 18px;color:var(--ink)}
+.instafeed .instapost .instacaption{display:-webkit-box;position:static;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:4;font:500 14px/1.55 'DM Sans',sans-serif;color:#33445d;white-space:normal}
+.instafeed .instapost .instaopen{position:static;margin-top:auto;padding-top:14px;font:800 10px/1.3 'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--pink)}
+@media(max-width:800px){.instafeed .instagrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.instafeed .instapost-details{padding:13px 13px 15px}.instafeed .instapost .instacaption{-webkit-line-clamp:4;font-size:13px}}
+@media(max-width:420px){.instafeed .instagrid{gap:9px}.instafeed .instapost-details{padding:11px 10px 13px}.instafeed .instapost .instacaption{font-size:12px}.instafeed .instapost .instaopen{font-size:9px}}
