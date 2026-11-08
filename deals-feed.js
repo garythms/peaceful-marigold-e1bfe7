@@ -32,6 +32,39 @@
     return c;
   }
 
+  function cta() {
+    const box = el('div', 'notwhat');
+    box.append(el('h3', '', 'Not what you are looking for?'), el('p', '', 'Let us know what you would like and we will find it for you.'));
+    const a = el('a', 'btn primary', 'Tell us what you are after'); a.href = 'quote.html';
+    box.append(a);
+    return box;
+  }
+
+  function grouped(cards, list) {
+    const out = [];
+    let cur = null;
+    list.forEach((d, i) => {
+      if (!cards[i]) return;
+      if (!cur || cur.key !== d.group) {
+        const sec = el('section', 'dealgroup' + (d.urgent ? ' urgent' : ''));
+        sec.id = d.group;
+        const grid = el('div', 'dealsgrid');
+        if (d.urgent) {
+          sec.append(el('h3', 'grouphead', 'Time-sensitive deals'), el('p', 'groupintro', 'Book these soon. They close within the next two months.'), grid);
+        } else {
+          const det = el('details', 'folder'); det.open = true;
+          const sum = el('summary', '', d.group_label + ' ');
+          det.append(sum, grid); sec.append(det);
+        }
+        cur = { key: d.group, grid, sec, n: 0, sum: !d.urgent ? sec.querySelector('summary') : null };
+        out.push(cur);
+      }
+      cur.grid.append(cards[i]); cur.n += 1;
+    });
+    out.forEach((g) => { if (g.sum) g.sum.append(el('span', 'n', g.n + (g.n === 1 ? ' deal' : ' deals'))); });
+    return out.map((g) => g.sec);
+  }
+
   function message(feed, text) {
     const p = el('p', 'feednote', text + ' ');
     const a = el('a', '', 'Request a personal quote'); a.href = 'quote.html';
@@ -48,8 +81,17 @@
         const limit = parseInt(feed.dataset.limit || '0', 10) || list.length;
         const cards = list.slice(0, limit).map(card).filter(Boolean);
         if (!cards.length) return message(feed, 'New deals are added all the time. Tell us where you would like to go and we will look for you.');
-        feed.replaceChildren(...cards);
+        if (feed.hasAttribute('data-grouped')) {
+          const secs = grouped(list.slice(0, limit).map(card), list.slice(0, limit));
+          feed.classList.remove('dealsgrid');
+          feed.replaceChildren(...secs);
+        } else {
+          feed.replaceChildren(...cards);
+        }
+        if (feed.hasAttribute('data-cta')) feed.after(cta());
         feed.setAttribute('aria-busy', 'false');
+        document.querySelectorAll('[data-needs-urgent]').forEach((n) => { n.hidden = !list.some((d) => d.urgent); });
+        if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
       });
     })
     .catch(() => feeds.forEach((f) => message(f, 'Our latest deals are not loading right now.')));
